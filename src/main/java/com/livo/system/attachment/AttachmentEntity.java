@@ -18,4 +18,10 @@ public class AttachmentEntity {
 	
 	@Column(name = "file_name", nullable = false , length = 255)
 	private String fileName;
+	
+	@Column(nullable = false)
+	private String module;
+
+	@Column(nullable = false)
+	private Long moduleId;
 }
