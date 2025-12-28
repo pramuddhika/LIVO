@@ -19,7 +19,7 @@ public class RoleService {
 		RoleEntity role = new RoleEntity();
 		
 		role.setRole_name(createRoleDTO.getRole_name().toUpperCase());
-		role.setStatus(createRoleDTO.getStatus() != null ? createRoleDTO.getStatus() : true);
+		role.setStatus(createRoleDTO.getStatus());
 		role.setModifyed_date(DateTimeUtil.now());
 		
 		return roleRepository.save(role);

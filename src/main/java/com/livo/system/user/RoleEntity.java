@@ -8,6 +8,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "roles")
@@ -18,9 +20,11 @@ public class RoleEntity {
 	@Column(name = "role_id", nullable = false , unique = true )
 	private Long role_id;
 	
+	@NotBlank(message = "Role name is mandatory")
 	@Column(name = "role_name", nullable = false , unique = true , length = 100 )
 	private String role_name;
 	
+	@NotNull(message = "Status is mandatory")
 	@Column(name = "status", nullable = false )
 	private Boolean status;
 	

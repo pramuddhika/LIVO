@@ -27,7 +27,7 @@ public class RoleController {
 			roleService.createRole(createRoleDTO);
 			return ApiResponse.success("Role created successfully", null);
 		} catch (DataIntegrityViolationException e) {
-			// Handle database constraint violations (like duplicate entries)
+			// Handle database constraint violations
 			String validationMessage = ExtracValidationMessage.extractValidationMessage(e);
 			return ApiResponse.error(validationMessage);
 		} catch (Exception e) {

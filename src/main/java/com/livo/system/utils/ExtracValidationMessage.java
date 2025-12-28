@@ -1,6 +1,5 @@
 package com.livo.system.utils;
 
-
 public final class ExtracValidationMessage {
 
 	private ExtracValidationMessage() {
@@ -8,35 +7,41 @@ public final class ExtracValidationMessage {
 
 	public static String extractValidationMessage(Exception e) {
 		String message = e.getMessage();
-		if (message == null) {
+		if (message == null || message.isEmpty()) {
 			return "An unknown error occurred.";
 		}
-		
+
 		// Handle validation failed messages
-		int startIndex = message.indexOf("validation failed: ");
-		if (startIndex != -1) {
-			return message.substring(startIndex + "validation failed: ".length()).trim();
+		if (message.contains("validation failed: ")) {
+			int startIndex = message.indexOf("validation failed: ") + 19;
+			return message.substring(startIndex);
 		}
-		
+
 		// Handle duplicate entry errors
 		if (message.contains("Duplicate entry")) {
-			int duplicateIndex = message.indexOf("Duplicate entry '");
-			if (duplicateIndex != -1) {
-				int endQuote = message.indexOf("'", duplicateIndex + 17);
-				if (endQuote != -1) {
-					String value = message.substring(duplicateIndex + 17, endQuote);
-					return "The value '" + value + "' already exists. Please use a different value.";
-				}
+			int startIndex1 = message.indexOf("Duplicate entry '") + 17;
+			int endIndex = message.indexOf("'", startIndex1);
+			if (startIndex1 > 16 && endIndex > startIndex1) {
+				String duplicateValue = message.substring(startIndex1, endIndex);
+				return "The value '" + duplicateValue + "' already exists. Please use a different value.";
 			}
-			return "A duplicate entry was detected. Please use a unique value.";
 		}
-		
+
+		// Handle constraint violations with interpolatedMessage
+		if (message.contains("interpolatedMessage='")) {
+			int startIndex = message.indexOf("interpolatedMessage='") + 21;
+			int endIndex = message.indexOf("'", startIndex);
+			if (endIndex > startIndex) {
+				return message.substring(startIndex, endIndex);
+			}
+		}
+
 		// Handle other constraint violations
-		if (message.contains("ConstraintViolationException") || message.contains("constraint")) {
-			return "Data constraint violation: " + message;
+		if (message.contains("constraint violation")) {
+			return "Data validation failed. Please check your input.";
 		}
-		
+
 		return message;
 	}
-	
+
 }
