@@ -20,7 +20,7 @@ public class RoleService {
 		
 		role.setRole_name(createRoleDTO.getRole_name().toUpperCase());
 		role.setStatus(createRoleDTO.getStatus() != null ? createRoleDTO.getStatus() : true);
-		role.setModifyed_date(DateTimeUtil.today());
+		role.setModifyed_date(DateTimeUtil.now());
 		
 		return roleRepository.save(role);
 	}

@@ -13,6 +13,25 @@ public class ApiResponse<T> {
 		this.message = message;
 		this.data = data;
 	}
+	
+	
+	public int getCode() {
+		return code;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public T getData() {
+		return data;
+	}
+
+
 
 	public static <T> ApiResponse<T> success(String message, T data) {
         return new ApiResponse<>(200, "S", message, data);

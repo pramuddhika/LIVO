@@ -17,12 +17,16 @@ public class RoleEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false , unique = true )
 	private Long role_id;
+	
 	@Column(name = "role_name", nullable = false , unique = true , length = 100 )
 	private String role_name;
+	
 	@Column(name = "status", nullable = false )
 	private Boolean status;
+	
 	@Column(name = "modifyed_by", nullable = true )
 	private String modifyed_by;
+	
 	@Column(name = "modifyed_date", nullable = true)
 	private Date modifyed_date;
 	

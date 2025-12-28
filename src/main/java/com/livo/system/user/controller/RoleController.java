@@ -1,6 +1,7 @@
 package com.livo.system.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,12 +26,14 @@ public class RoleController {
 		try {
 			roleService.createRole(createRoleDTO);
 			return ApiResponse.success("Role created successfully", null);
-		} catch (Exception e) {
+		} catch (DataIntegrityViolationException e) {
+			// Handle database constraint violations (like duplicate entries)
 			String validationMessage = ExtracValidationMessage.extractValidationMessage(e);
-			if (validationMessage != null) {
-				return ApiResponse.error(validationMessage);
-			}
-			return ApiResponse.error("An error occurred while creating the user: " + e.getMessage());
+			return ApiResponse.error(validationMessage);
+		} catch (Exception e) {
+			// Handle other exceptions
+			String validationMessage = ExtracValidationMessage.extractValidationMessage(e);
+			return ApiResponse.error(validationMessage);
 		}
 	}
 	

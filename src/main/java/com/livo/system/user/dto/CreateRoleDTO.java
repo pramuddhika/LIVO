@@ -8,6 +8,7 @@ public class CreateRoleDTO {
 	private Boolean status;
 	private Long modified_by;
 	private Date modified_date;
+	
 	public String getRole_name() {
 		return role_name;
 	}

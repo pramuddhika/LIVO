@@ -1,30 +1,30 @@
 package com.livo.system.utils;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public final class DateTimeUtil {
 
-    private static final DateTimeFormatter DATE_FORMAT =
-            DateTimeFormatter.ofPattern("yyyy.MM.dd");
+	private static final DateTimeFormatter DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
-    private DateTimeUtil() {
-    }
+	private DateTimeUtil() {
+	}
 
-    // Date only → yyyy.MM.dd
-    public static Date today() {
-        return Date.valueOf(LocalDate.now());
-    }
+	// Date only (time = 00:00:00)
+	public static Date today() {
+		return Date.from(LocalDate.now().atStartOfDay(ZoneId.systemDefault()).toInstant());
+	}
 
-    // Date + time
-    public static LocalDateTime now() {
-        return LocalDateTime.now();
-    }
+	// Date + Time (CURRENT)
+	public static Date now() {
+		return Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+	}
 
-    // If you need formatted string
-    public static String todayFormatted() {
-        return LocalDate.now().format(DATE_FORMAT);
-    }
+	// yyyy.MM.dd
+	public static String todayFormatted() {
+		return LocalDate.now().format(DATE_FORMAT);
+	}
 }
