@@ -19,9 +19,9 @@ public class UserService {
 		
 		user.setName(createUserDTO.getName());
 		user.setEmail(createUserDTO.getEmail());
-		user.setContactNumber(createUserDTO.getContact_number());
+		user.setContactNumber(createUserDTO.getContactNumber());
 		user.setStatus(createUserDTO.getStatus());
-		user.setRole(createUserDTO.getRole_id());
+		user.setRoleId(createUserDTO.getRoleId());
 		user.setCreatedDate(DateTimeUtil.today());
 		
 		return userRespository.save(user);

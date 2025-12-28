@@ -8,11 +8,10 @@ public class GetUserDTO {
 	private String namee;
 	private String emaill;
 	private String role;
-	private String role_id;
+	private String roleId;
 	private String contactNumber;
-	private Date created_date;
-	private Date updated_date;
-	
+	private Date createdDate;
+	private Date updatedDate;
 	public Long getId() {
 		return id;
 	}
@@ -37,11 +36,11 @@ public class GetUserDTO {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	public String getRole_id() {
-		return role_id;
+	public String getRoleId() {
+		return roleId;
 	}
-	public void setRole_id(String role_id) {
-		this.role_id = role_id;
+	public void setRoleId(String roleId) {
+		this.roleId = roleId;
 	}
 	public String getContactNumber() {
 		return contactNumber;
@@ -49,17 +48,19 @@ public class GetUserDTO {
 	public void setContactNumber(String contactNumber) {
 		this.contactNumber = contactNumber;
 	}
-	public Date getCreated_date() {
-		return created_date;
+	public Date getCreatedDate() {
+		return createdDate;
 	}
-	public void setCreated_date(Date created_date) {
-		this.created_date = created_date;
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
 	}
-	public Date getUpdated_date() {
-		return updated_date;
+	public Date getUpdatedDate() {
+		return updatedDate;
 	}
-	public void setUpdated_date(Date updated_date) {
-		this.updated_date = updated_date;
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
+	
+	
 	
 }

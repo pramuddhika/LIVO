@@ -8,6 +8,7 @@ public class CreateRoleDTO {
 	private Boolean status;
 	private Long modified_by;
 	private Date modified_date;
+	private Long role_id;
 	
 	public String getRole_name() {
 		return role_name;
@@ -33,15 +34,11 @@ public class CreateRoleDTO {
 	public void setModified_date(Date modified_date) {
 		this.modified_date = modified_date;
 	}
-	public CreateRoleDTO(String role_name, Boolean status, Long modified_by, Date modified_date) {
-		super();
-		this.role_name = role_name;
-		this.status = status;
-		this.modified_by = modified_by;
-		this.modified_date = modified_date;
+	public Long getRole_id() {
+		return role_id;
 	}
-	
-	public CreateRoleDTO() {
+	public void setRole_id(Long role_id) {
+		this.role_id = role_id;
 	}
-	
+
 }

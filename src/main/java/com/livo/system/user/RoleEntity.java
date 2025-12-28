@@ -18,32 +18,36 @@ public class RoleEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "role_id", nullable = false , unique = true )
-	private Long role_id;
+	private Long roleId;
 	
 	@NotBlank(message = "Role name is mandatory")
 	@Column(name = "role_name", nullable = false , unique = true , length = 100 )
-	private String role_name;
+	private String roleName;
 	
 	@NotNull(message = "Status is mandatory")
 	@Column(name = "status", nullable = false )
 	private Boolean status;
 	
-	@Column(name = "modifyed_by", nullable = true )
-	private String modifyed_by;
+	@Column(name = "modified_by", nullable = true )
+	private String modifiedBy;
 	
-	@Column(name = "modifyed_date", nullable = true)
-	private Date modifyed_date;
-	
-	public void setRole_id(Long role_id2) {
-		this.role_id = role_id2;
+	@Column(name = "modified_date", nullable = true)
+	private Date modifiedDate;
+
+	public Long getRoleId() {
+		return roleId;
 	}
 
-	public String getRole_name() {
-		return role_name;
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
 
-	public void setRole_name(String role_name) {
-		this.role_name = role_name;
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 
 	public Boolean getStatus() {
@@ -54,24 +58,22 @@ public class RoleEntity {
 		this.status = status;
 	}
 
-	public String getModifyed_by() {
-		return modifyed_by;
+	public String getModifiedBy() {
+		return modifiedBy;
 	}
 
-	public void setModifyed_by(String modifyed_by) {
-		this.modifyed_by = modifyed_by;
+	public void setModifiedBy(String modifiedBy) {
+		this.modifiedBy = modifiedBy;
 	}
 
-	public Date getModifyed_date() {
-		return modifyed_date;
+	public Date getModifiedDate() {
+		return modifiedDate;
 	}
 
-	public void setModifyed_date(Date modifyed_date) {
-		this.modifyed_date = modifyed_date;
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
-	public Long getRole_id() {
-		return role_id;
-	}
+	
 	
 }

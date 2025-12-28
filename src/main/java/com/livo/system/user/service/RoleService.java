@@ -1,5 +1,8 @@
 package com.livo.system.user.service;
 
+import java.util.Date;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +21,15 @@ public class RoleService {
 		//TODO : creadted by and creatde date need to added
 		RoleEntity role = new RoleEntity();
 		
-		role.setRole_name(createRoleDTO.getRole_name().toUpperCase());
+		role.setRoleName(createRoleDTO.getRole_name().toUpperCase());
 		role.setStatus(createRoleDTO.getStatus());
-		role.setModifyed_date(DateTimeUtil.now());
+		role.setModifiedDate(DateTimeUtil.now());
 		
 		return roleRepository.save(role);
+	}
+	
+	public List<RoleEntity> getRolesByModifiedDate(Date modified_date) {
+		return roleRepository.findAllByOrderByModifiedDateDesc();
 	}
 
 	
