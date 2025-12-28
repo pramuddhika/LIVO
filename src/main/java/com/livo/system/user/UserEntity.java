@@ -11,6 +11,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -19,20 +21,29 @@ public class UserEntity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@NotBlank(message = "Name is mandatory")
 	@Column(name = "name", nullable = false)
 	private String name;
+	
+	@Email(message = "Email should be valid")
 	@Column(name = "email", nullable = false , unique = true , length = 100)
 	private String email;
+	
+	@NotBlank(message = "Contact Number is mandatory")
 	@Column(name = "contact_number", nullable = false , length = 100)
 	private String contactNumber;
+	
 	@Column(name = "created_date", nullable = false , length = 15)
 	private Date createdDate;
 	@Column(name = "updated_date", nullable = false )
 	private Date updatedDate;
+	
 	@Column(name = "password", nullable = true , length = 255)
 	private String password;
 	@Column(name = "status", nullable = false)
 	private Boolean status;
+	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "role_id", nullable = false)
 	private RoleEntity role;
@@ -95,6 +106,12 @@ public class UserEntity {
 	}
 	public void setStatus(Boolean status) {
 		this.status = status;
+	}
+
+	public void UseEntity(Long role_id) {
+		RoleEntity roleEntity = new RoleEntity();
+		roleEntity.setRole_id(role_id);
+		this.role = roleEntity;
 	}
 	
 	
