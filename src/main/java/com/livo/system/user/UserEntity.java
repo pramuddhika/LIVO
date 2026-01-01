@@ -17,36 +17,36 @@ import jakarta.validation.constraints.NotBlank;
 @Entity
 @Table(name = "users")
 public class UserEntity {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotBlank(message = "Name is mandatory")
 	@Column(name = "name", nullable = false)
 	private String name;
-	
+
 	@Email(message = "Email should be valid")
-	@Column(name = "email", nullable = false , unique = true , length = 100)
+	@Column(name = "email", nullable = false, unique = true, length = 100)
 	private String email;
-	
+
 	@NotBlank(message = "Contact Number is mandatory")
-	@Column(name = "contactNumber", nullable = false , length = 100)
+	@Column(name = "contactNumber", nullable = false, length = 100)
 	private String contactNumber;
-	
-	@Column(name = "createdDate", nullable = false , length = 15)
+
+	@Column(name = "createdDate", nullable = false, length = 15)
 	private Date createdDate;
-	@Column(name = "updatedDate", nullable = false )
+	@Column(name = "updatedDate", nullable = false)
 	private Date updatedDate;
-	
-	@Column(name = "password", nullable = true , length = 255)
+
+	@Column(name = "password", nullable = true, length = 255)
 	private String password;
 	@Column(name = "status", nullable = false)
 	private Boolean status;
-	
+
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roleId", nullable = false)
-	private RoleEntity roleId;
+	private RoleEntity role;
 
 	public Long getId() {
 		return id;
@@ -112,12 +112,11 @@ public class UserEntity {
 		this.status = status;
 	}
 
-	public RoleEntity getRoleId() {
-		return roleId;
+	public void setRole(RoleEntity role) {
+		this.role = role;
 	}
 
-	public void setRoleId(RoleEntity roleId) {
-		this.roleId = roleId;
+	public RoleEntity getRole() {
+		return role;
 	}
-		
 }

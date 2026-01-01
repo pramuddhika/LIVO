@@ -18,7 +18,7 @@ public class RoleService {
 	private RoleRepository roleRepository;
 	
 	public RoleEntity createRole(CreateRoleDTO createRoleDTO) {
-		//TODO : creadted by and creatde date need to added
+		//TODO : creadted by need to added
 		RoleEntity role = new RoleEntity();
 		
 		role.setRoleName(createRoleDTO.getRole_name().toUpperCase());
@@ -31,6 +31,8 @@ public class RoleService {
 	public List<RoleEntity> getRolesByModifiedDate(Date modified_date) {
 		return roleRepository.findAllByOrderByModifiedDateDesc();
 	}
+	
+	
 
 	
 }

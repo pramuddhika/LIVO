@@ -10,7 +10,7 @@ public class CreateUserDTO {
 	private String email;
 	private String contactNumber;
 	private Boolean status;
-	private RoleEntity roleId;
+	private Long role_id;
 	private Date createdDate;
 	public String getName() {
 		return name;
@@ -36,11 +36,11 @@ public class CreateUserDTO {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	public RoleEntity getRoleId() {
-		return roleId;
+	public Long getRole_id() {
+		return role_id;
 	}
-	public void setRoleId(RoleEntity roleId) {
-		this.roleId = roleId;
+	public void setRole_id(Long role_id) {
+		this.role_id = role_id;
 	}
 	public Date getCreatedDate() {
 		return createdDate;

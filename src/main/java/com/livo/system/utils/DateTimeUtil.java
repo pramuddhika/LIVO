@@ -1,7 +1,7 @@
 package com.livo.system.utils;
 
+import java.time.Instant;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -20,7 +20,7 @@ public final class DateTimeUtil {
 
 	// Date + Time (CURRENT)
 	public static Date now() {
-		return Date.from(LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant());
+		return Date.from(Instant.now());
 	}
 
 	// yyyy.MM.dd

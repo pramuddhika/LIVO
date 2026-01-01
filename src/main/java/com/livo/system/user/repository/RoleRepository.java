@@ -11,5 +11,6 @@ import com.livo.system.user.RoleEntity;
 public interface RoleRepository extends JpaRepository<RoleEntity, Long> {
 	
 	List<RoleEntity>findAllByOrderByModifiedDateDesc();
+	
 
 }
