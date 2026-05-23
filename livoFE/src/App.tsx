@@ -1,121 +1,122 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [showPassword, setShowPassword] = useState(false)
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    remember: true,
+  })
+
+  const updateField = (field: 'email' | 'password' | 'remember', value: string | boolean) => {
+    setFormData((current) => ({
+      ...current,
+      [field]: value,
+    }))
+  }
 
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <main className="login-shell">
+      <section className="login-hero" aria-label="LIVO brand overview">
+        <div className="brand-mark">
+          <span className="brand-dot" />
+          <span>LiVO</span>
         </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+
+        <div className="hero-copy">
+          <p className="eyebrow">Apartment management system</p>
+          <h1>Welcome back to smarter community operations.</h1>
+          <p className="hero-text">
+            Manage tenants, maintenance, notices, and payments from one calm, organized
+            workspace built for modern apartment living.
           </p>
         </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
 
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
+        <div className="stats-grid" aria-label="Platform highlights">
+          <article>
+            <strong>128</strong>
+            <span>Active units</span>
+          </article>
+          <article>
+            <strong>92%</strong>
+            <span>On-time payments</span>
+          </article>
+          <article>
+            <strong>24/7</strong>
+            <span>Resident access</span>
+          </article>
         </div>
       </section>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+      <section className="login-card" aria-label="Login form">
+        <div className="card-header">
+          <p className="card-kicker">Secure sign in</p>
+          <h2>Access your property dashboard</h2>
+          <p>Use your LIVO account to continue.</p>
+        </div>
+
+        <form className="login-form">
+          <label className="field">
+            <span>Email address</span>
+            <input
+              type="email"
+              value={formData.email}
+              onChange={(event) => updateField('email', event.target.value)}
+              placeholder="manager@livo.com"
+              autoComplete="email"
+            />
+          </label>
+
+          <label className="field">
+            <span>Password</span>
+            <div className="password-row">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={formData.password}
+                onChange={(event) => updateField('password', event.target.value)}
+                placeholder="Enter your password"
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                className="ghost-button"
+                onClick={() => setShowPassword((current) => !current)}
+              >
+                {showPassword ? 'Hide' : 'Show'}
+              </button>
+            </div>
+          </label>
+
+          <div className="form-row">
+            <label className="checkbox">
+              <input
+                type="checkbox"
+                checked={formData.remember}
+                onChange={(event) => updateField('remember', event.target.checked)}
+              />
+              <span>Remember me</span>
+            </label>
+
+            <a href="#recover">Forgot password?</a>
+          </div>
+
+          <button type="submit" className="primary-button">
+            Sign in to LIVO
+          </button>
+        </form>
+
+        <div className="card-footer">
+          <p>
+            Designed and developed by{' '}
+            <a href="https://www.pramuddhika.com" target="_blank" rel="noreferrer">
+              Rasanga Pramuddhika
+            </a>
+          </p>
+        </div>
+      </section>
+    </main>
   )
 }
 
